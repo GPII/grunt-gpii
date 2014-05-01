@@ -15,13 +15,14 @@ https://github.com/gpii/universal/LICENSE.txt
 module.exports = function(grunt) {
     var path = require("path");
 
-    grunt.loadNpmTasks('grunt-shell');
+    grunt.loadNpmTasks("grunt-shell");
 
     grunt.registerTask("gpiiUniversal", "Fetch and Install Universal", function() {
         var options = this.options({
             node_modules: ".." + path.sep + "node_modules",
             universal: ".." + path.sep + "node_modules" + path.sep + "universal",
-            repoURL: "git://github.com/GPII/universal.git"
+            repoURL: "git://github.com/GPII/universal.git",
+            cloneOptions: "" // allows adding a --depth=1 for testing
         });
         var shell = grunt.config.get("shell") || {};
         var shellOptions = {
@@ -31,8 +32,7 @@ module.exports = function(grunt) {
         shell.gitClone = {
             options: shellOptions,
             command: function() {
-                //TODO Add a debug option with --depth=1
-                return 'git clone ' + options.repoURL + " " + options.universal;
+                return "git clone " + options.cloneOptions + " " + options.repoURL + " " + options.universal;
             }
         };
         shell.npmInstall = {
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
                 }
             },
             command: function() {
-                return 'npm install';
+                return "npm install";
             }
         };
         grunt.config.set("shell", shell);
