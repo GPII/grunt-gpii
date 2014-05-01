@@ -22,7 +22,6 @@ module.exports = function(grunt) {
             node_modules: ".." + path.sep + "node_modules",
             universal: ".." + path.sep + "node_modules" + path.sep + "universal",
             repoURL: "git://github.com/GPII/universal.git",
-            cloneOptions: "" // allows adding a --depth=1 for testing
         });
         var shell = grunt.config.get("shell") || {};
         var shellOptions = {
@@ -32,7 +31,11 @@ module.exports = function(grunt) {
         shell.gitClone = {
             options: shellOptions,
             command: function() {
-                return "git clone " + options.cloneOptions + " " + options.repoURL + " " + options.universal;
+                var gitOptions = "";
+                if (grunt.option("fastClone") === true) {
+                    gitOptions += " --depth=1 "
+                }
+                return "git clone " + gitOptions + " " + options.repoURL + " " + options.universal;
             }
         };
         shell.npmInstall = {
