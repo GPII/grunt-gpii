@@ -1,10 +1,14 @@
-/*
- * grunt-gpii
- * https://github.com/sgithens/grunt-gpii
- *
- * Copyright (c) 2014 Steven Githens
- * Licensed under the MIT license.
- */
+/*!
+GPII Linux Personalization Framework Node.js Bootstrap
+
+Copyright 2014 RTF-US
+
+Licensed under the New BSD license. You may not use this file except in
+compliance with this License.
+
+You may obtain a copy of the License at
+https://github.com/gpii/universal/LICENSE.txt
+*/
 
 'use strict';
 
