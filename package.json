@@ -2,23 +2,19 @@
   "name": "grunt-gpii",
   "description": "GPII Installation and Core Tasks",
   "version": "0.1.0",
-  "homepage": "https://github.com/sgithens/grunt-gpii",
-  "author": {
-    "name": "Steven Githens",
-    "email": "swgithen@mtu.edu",
-    "url": "http://githens.org"
-  },
+  "homepage": "http://gpii.net/",
+  "author": "GPII",
   "repository": {
     "type": "git",
-    "url": "git://github.com/sgithens/grunt-gpii.git"
+    "url": "git://github.com/gpii/grunt-gpii.git"
   },
   "bugs": {
-    "url": "https://github.com/sgithens/grunt-gpii/issues"
+    "url": "https://github.com/gpii/grunt-gpii/issues"
   },
   "licenses": [
     {
-      "type": "MIT",
-      "url": "https://github.com/sgithens/grunt-gpii/blob/master/LICENSE-MIT"
+      "type": "BSD-3-Clause",
+      "url": "http://www.opensource.org/licenses/BSD-3-Clause"
     }
   ],
   "engines": {
