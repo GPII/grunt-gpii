@@ -14,12 +14,12 @@ https://github.com/gpii/universal/LICENSE.txt
 
 module.exports = function(grunt) {
 
-  // Project configuration.
-  grunt.initConfig({
+    // Project configuration.
+    grunt.initConfig({
 
-  });
+    });
 
-  // Actually load this plugin's task(s).
-  grunt.loadTasks('tasks');
+    // Actually load this plugin's task(s).
+    grunt.loadTasks('tasks');
 
 };
