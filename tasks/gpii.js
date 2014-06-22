@@ -14,15 +14,27 @@ https://github.com/gpii/universal/LICENSE.txt
 
 module.exports = function(grunt) {
     var path = require("path");
+    var default_options = {
+        node_modules: ".." + path.sep + "node_modules",
+        universal: ".." + path.sep + "node_modules" + path.sep + "universal",
+        repoURL: "git://github.com/GPII/universal.git"
+    };
 
     grunt.loadNpmTasks("grunt-shell");
 
+    grunt.registerTask("dedupeInfusion", "Remove duplicate copies of infusion", function () {
+        var infusions = grunt.file.expand({
+            cwd: default_options.node_modules
+        }, "**/infusion");
+        // The top one should always be the most shallow copy
+        for (var i = 1; i < infusions.length; i++) {
+            var toDelete = default_options.node_modules + path.sep + infusions[i];
+            grunt.file.delete(toDelete, { force: true });
+        }
+    }); 
+
     grunt.registerTask("gpiiUniversal", "Fetch and Install Universal", function() {
-        var options = this.options({
-            node_modules: ".." + path.sep + "node_modules",
-            universal: ".." + path.sep + "node_modules" + path.sep + "universal",
-            repoURL: "git://github.com/GPII/universal.git",
-        });
+        var options = this.options(default_options);
         var shell = grunt.config.get("shell") || {};
         var shellOptions = {
             stdout: true,
@@ -54,6 +66,7 @@ module.exports = function(grunt) {
         grunt.file.mkdir(options.node_modules);
         grunt.task.run("shell:gitClone");
         grunt.task.run("shell:npmInstall");
+        grunt.task.run("dedupeInfusion");
     });
 
 };
