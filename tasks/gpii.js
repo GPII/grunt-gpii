@@ -26,7 +26,10 @@ module.exports = function(grunt) {
         var infusions = grunt.file.expand({
             cwd: default_options.node_modules
         }, "**/infusion");
-        // The top one should always be the most shallow copy
+        // The shortest path should always be the most shallow copy
+        infusions.sort(function(a, b) {
+            return a.length - b.length;
+        });
         for (var i = 1; i < infusions.length; i++) {
             var toDelete = default_options.node_modules + path.sep + infusions[i];
             grunt.file.delete(toDelete, { force: true });
