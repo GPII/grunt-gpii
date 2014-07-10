@@ -10,16 +10,16 @@ You may obtain a copy of the License at
 https://github.com/gpii/universal/LICENSE.txt
 */
 
-'use strict';
+"use strict";
 
-module.exports = function(grunt) {
-
+module.exports = function (grunt) {
+  
     // Project configuration.
     grunt.initConfig({
 
     });
 
     // Actually load this plugin's task(s).
-    grunt.loadTasks('tasks');
+    grunt.loadTasks("tasks");
 
 };

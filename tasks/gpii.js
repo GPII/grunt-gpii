@@ -10,9 +10,9 @@ You may obtain a copy of the License at
 https://github.com/gpii/universal/LICENSE.txt
 */
 
-'use strict';
+"use strict";
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     var path = require("path");
     var default_options = {
         node_modules: ".." + path.sep + "node_modules",
@@ -32,9 +32,9 @@ module.exports = function(grunt) {
         });
         for (var i = 1; i < infusions.length; i++) {
             var toDelete = default_options.node_modules + path.sep + infusions[i];
-            grunt.file.delete(toDelete, { force: true });
+            grunt.file["delete"](toDelete, { force: true });
         }
-    }); 
+    });
 
     grunt.registerTask("gpiiUniversal", "Fetch and Install Universal", function() {
         var options = this.options(default_options);
@@ -48,7 +48,7 @@ module.exports = function(grunt) {
             command: function() {
                 var gitOptions = "";
                 if (grunt.option("fastClone") === true) {
-                    gitOptions += " --depth=1 "
+                    gitOptions += " --depth=1 ";
                 }
                 return "git clone " + gitOptions + " " + options.repoURL + " " + options.universal;
             }
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
                     cwd: options.universal
                 }
             },
-            command: function() {
+            command: function () {
                 return "npm install";
             }
         };
