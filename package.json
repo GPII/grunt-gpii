@@ -1,0 +1,36 @@
+{
+  "name": "grunt-gpii",
+  "description": "GPII Installation and Core Tasks",
+  "version": "0.1.0",
+  "homepage": "http://gpii.net/",
+  "author": "GPII",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gpii/grunt-gpii.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gpii/grunt-gpii/issues"
+  },
+  "licenses": [
+    {
+      "type": "BSD-3-Clause",
+      "url": "http://www.opensource.org/licenses/BSD-3-Clause"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-shell": "0.6.4"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.4"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
