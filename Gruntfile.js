@@ -14,9 +14,17 @@ https://github.com/gpii/universal/LICENSE.txt
 
 module.exports = function (grunt) {
   
+    grunt.loadNpmTasks("grunt-contrib-jshint");
+  
     // Project configuration.
     grunt.initConfig({
-
+        jshint: {
+            src: ["tasks/**/*.js"],
+            buildScripts: ["Gruntfile.js"],
+            options: {
+                jshintrc: true
+            }
+        }
     });
 
     // Actually load this plugin's task(s).

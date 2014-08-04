@@ -3,7 +3,9 @@
   "description": "GPII Installation and Core Tasks",
   "version": "0.1.0",
   "homepage": "http://gpii.net/",
-  "author": "GPII",
+  "author": {
+    "name": "GPII"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/gpii/grunt-gpii.git"
@@ -24,8 +26,9 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt": "~0.4.4",
-    "grunt-shell": "0.6.4"
+    "grunt-shell": "0.6.4",
+    "grunt-contrib-jshint": "~0.9.0",
+    "grunt": "~0.4.4"
   },
   "peerDependencies": {
     "grunt": "~0.4.4"
