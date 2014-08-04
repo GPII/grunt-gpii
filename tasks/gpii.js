@@ -23,12 +23,42 @@ module.exports = function (grunt) {
         universalRepoURL: "git://github.com/GPII/universal.git"
     };
    
-    // Subvert the grunt plugin system by creating a single, global, well-known namespace for gpii-grunt "tasks" - which are simply functions
-    // accepting a single "options" argument
+    // Subvert the grunt plugin system by creating a single, global, well-known namespace for shared grunt utility functions
     
-    var gpiiGrunt = {};
+    var gpiiGrunt = {
+        defaults: {
+            shell: {
+                options: {
+                    stdout: true,
+                    stderr: true,
+                    failOnError: true
+                }
+            },
+            "dedupe-infusion": {
+                options: {
+                    node_modules: "./node_modules"
+                }
+            }
+        }
+    };
     
-    gpiiGrunt.dedupeInfusion = function (options) {
+    // Subvert the grunt invocation system by accepting a complex argument and stuffing it into the config's options for the task
+    // We can't invoke task functions directly since grunt queues them async
+    
+    gpiiGrunt.runTask = function (type, options) {
+        var holder = grunt.config.get(type) || {};
+        options = _.merge({}, gpiiGrunt.defaults[type], options);
+        if (options.name) {
+            holder[options.name] = options;
+        } else {
+            holder = options;
+        }
+        grunt.config.set(type, holder);
+        grunt.task.run(type + (options.name ? ":" + options.name : ""));
+    };
+    
+    grunt.registerTask("dedupe-infusion", "Remove duplicate copies of infusion", function () {
+        var options = this.options(gpiiGrunt.defaults["dedupe-infusion"]);
         var node_modules = options.node_modules;
         var infusions = grunt.file.expand({
             cwd: node_modules
@@ -45,7 +75,7 @@ module.exports = function (grunt) {
             return oneSegs.join("/");
         });
         if (infusionSegs.length === 0) {
-            grunt.log.error("Warning - no instances of Infusion library discovered in " + grunt.file.expand("."));
+            grunt.log.error("Warning - no instances of Infusion library discovered in " + path.resolve(node_modules));
         }
         if (infusionSegs.length > 2 && infusionSegs[0] === infusionSegs[1]) {
             grunt.log.error("Warning - found two instances of Infusion at the same path depth: " + infusions[0] + " and " + infusions[1] + ": deleting the second arbitrarily");
@@ -55,30 +85,20 @@ module.exports = function (grunt) {
             grunt.log.ok("Deleting " + toDelete);
             grunt.file["delete"](toDelete, { force: true });
         }
-    };
-    
-    grunt.registerTask("dedupe-infusion", "Remove duplicate copies of infusion", function () {
-        var options = this.options(default_options);
-        gpiiGrunt.dedupeInfusion(options);
     });
-   
-    gpiiGrunt.defaultShellOptions = {
-        options: {
-            stdout: true,
-            stderr: true,
-            failOnError: true
-        }
-    };
     
     gpiiGrunt.shellImmediate = function (options) {
         if (!options.name || !options.command) {
             grunt.log.error("shellImmediate task must have options \"name\" and \"command\"");
         }
-        var shell = grunt.config.get("shell") || {};
-        options = _.merge({}, gpiiGrunt.defaultShellOptions, options);
-        shell[options.name] = options;
-        grunt.config.set("shell", shell);
-        grunt.task.run("shell:" + options.name);
+        options = _.merge({ // Oh for a Model Transformations framework
+            options: {
+                execOptions: {
+                    cwd: options.cwd
+                }
+            }
+        }, options);
+        gpiiGrunt.runTask("shell", options);
     };
     
     gpiiGrunt.gitClone = function (options) {
@@ -116,14 +136,17 @@ module.exports = function (grunt) {
             repoURL: options.universalRepoURL,
             localPath: options.universal
         });
-        
+
         gpiiGrunt.shellImmediate({
+            name: "npm-install",
             command: "npm install",
             cwd: options.universal
         });
         
-        gpiiGrunt.dedupeInfusion({
-            node_modules: "../node_modules"
+        gpiiGrunt.runTask("dedupe-infusion", {
+            options: {
+                node_modules: "../node_modules"
+            }
         });
     });
 
