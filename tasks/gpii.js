@@ -58,7 +58,7 @@ module.exports = function (grunt) {
     };
     
     grunt.registerTask("dedupe-infusion", "Remove duplicate copies of infusion", function () {
-        var options = this.options(gpiiGrunt.defaults["dedupe-infusion"]);
+        var options = this.options(gpiiGrunt.defaults["dedupe-infusion"].options);
         var node_modules = options.node_modules;
         var infusions = grunt.file.expand({
             cwd: node_modules
