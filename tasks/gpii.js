@@ -67,7 +67,7 @@ module.exports = function (grunt) {
         var infusionSegs = infusions.map(function (onePath) {
             return onePath.split(path.seg);
         });
-        // The shortest path should always be the most shallow copy
+        // Locate the copy of infusion at the shortest path depth
         infusionSegs.sort(function (a, b) {
             return a.length - b.length;
         });
