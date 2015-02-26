@@ -65,7 +65,9 @@ module.exports = function (grunt) {
         }, "**/infusion");
         grunt.log.ok("Found " + infusions.length + " infusions");
         var infusionSegs = infusions.map(function (onePath) {
-            return onePath.split(path.seg);
+            // Whilst the "path" module exports an entry "path.sep" purportedly holding this path separator,
+            // in practice this is not the one used by the grunt file expander
+            return onePath.split("/");
         });
         // Locate the copy of infusion at the shortest path depth
         infusionSegs.sort(function (a, b) {
