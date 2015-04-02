@@ -13,7 +13,7 @@ to the grunt task), runs `npm install` and then the `dedupe-infusion` task.
 * npm-install - This task installs or reinstalls a selection of dependencies from this project's package.json file. This is useful during development where perhaps only one dependency has been
 updated and a quick update is required. For example, the command `grunt npm-install:infusion` will just reinstall this project's `infusion` module.
 
-* lint - This task is an alias for the tasks `jshint` followed by `jsonlint`. This should be run in each GPII core project before each commit, to ensure that all .js and .json files pass linting.
+* lint - This task is an alias for the tasks `jshint` followed by `jsonlint`. This should be run in each GPII core project before each pull request, to ensure that all .js and .json files pass linting.
 
 The `gpii-universal` task is suitable for running from the top level of our architecture-specific repositories, e.g. linux and windows.
 

@@ -147,7 +147,7 @@ module.exports = function (grunt) {
         
         gpiiGrunt.runTask("dedupe-infusion", {
             options: {
-                node_modules: "../node_modules"
+                node_modules: "../node_modules/universal/node_modules"
             }
         });
     });
