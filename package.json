@@ -1,39 +1,38 @@
 {
-  "name": "grunt-gpii",
-  "description": "GPII Installation and Core Tasks",
-  "version": "0.1.0",
-  "homepage": "http://gpii.net/",
-  "author": {
-    "name": "GPII"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/gpii/grunt-gpii.git"
-  },
-  "bugs": {
-    "url": "https://github.com/gpii/grunt-gpii/issues"
-  },
-  "licenses": [
-    {
-      "type": "BSD-3-Clause",
-      "url": "http://www.opensource.org/licenses/BSD-3-Clause"
-    }
-  ],
-  "engines": {
-    "node": ">= 0.8.0"
-  },
-  "scripts": {
-    "test": "grunt test"
-  },
-  "devDependencies": {
-    "grunt-shell": "0.6.4",
-    "grunt-contrib-jshint": "~0.9.0",
-    "grunt": "~0.4.4"
-  },
-  "peerDependencies": {
-    "grunt": "~0.4.4"
-  },
-  "keywords": [
-    "gruntplugin"
-  ]
+    "name": "grunt-gpii",
+    "description": "GPII Installation and Core Tasks",
+    "version": "1.0.0",
+    "homepage": "http://gpii.net/",
+    "author": {
+        "name": "GPII"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/gpii/grunt-gpii.git"
+    },
+    "bugs": {
+        "url": "https://issues.gpii.net"
+    },
+    "license" : "BSD-3-Clause",
+    "engines": {
+      "node": ">= 0.8.0"
+    },
+    "scripts": {
+        "test": "grunt test"
+    },
+    "dependencies": {
+       "dedupe-infusion": "~1.0.0",
+       "shelljs": "~0.3.0"
+    },
+    "devDependencies": {
+        "grunt-shell": "0.6.4",
+        "grunt-contrib-jshint": "~0.9.0",
+        "grunt": "~0.4.5"
+    },
+    "peerDependencies": {
+        "grunt": "~0.4.5"
+    },
+    "keywords": [
+        "gruntplugin"
+    ]
 }
