@@ -1,5 +1,5 @@
 /*!
-GPII Linux Personalization Framework Node.js Bootstrap
+GPII Grunt Tasks' own Gruntfile
 
 Copyright 2014 RTF-US
 
@@ -15,6 +15,7 @@ https://github.com/gpii/universal/LICENSE.txt
 module.exports = function (grunt) {
   
     grunt.loadNpmTasks("grunt-contrib-jshint");
+    grunt.loadNpmTasks("grunt-jsonlint");
   
     // Project configuration.
     grunt.initConfig({
@@ -24,6 +25,9 @@ module.exports = function (grunt) {
             options: {
                 jshintrc: true
             }
+        },
+        jsonlint: {
+            src: ["package.json"]
         }
     });
 

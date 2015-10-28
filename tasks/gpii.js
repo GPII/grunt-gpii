@@ -115,7 +115,7 @@ module.exports = function (grunt) {
         });
     });
 
-    grunt.registerTask("lint", "Apply jshint", ["jshint"]);
+    grunt.registerTask("lint", "Apply jshint and jsonlint", ["jshint", "jsonlint"]);
     
     var packageFile = grunt.file.readJSON("package.json");
     
